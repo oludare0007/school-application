@@ -1,0 +1,44 @@
+{%extends 'users/home_layout.html'%}
+
+{% block content %}
+
+<h2>Confirm Payment</h2>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th scope="col"><h6><span style="color: rgb(66, 64, 64);">School Fees</span></h6></th>
+            <td><span>{{payment.school_fees}}</span></h4></td>
+        </tr>
+        <tr>
+            <th scope="col"><h6><span style="color: rgb(66, 64, 64);">Book Fees</span></h6></th>
+            <td><span>{{payment.books_fees}}</span></h4></td>
+        </tr>
+        <tr>
+            <th scope="col"><h6><span style="color: rgb(66, 64, 64);">Uniform Fees</span></h6></th>
+            <td><span>{{payment.uniform_fees}}</span></h4></td>
+        </tr>
+        <tr>
+            <th scope="col"><h6><span style="color: rgb(46, 45, 45);">Total Amount</span></h6></th>
+            <td><span>{{payment.school_fees + payment.books_fees + payment.uniform_fees }}</span></td>
+        </tr>
+        <tr>
+            <th scope="col"><h6>Refrence Number</h6></th>
+            <td><h4><span style="color: red;">{{ref_no}}</span></h4></td>
+        </tr>
+    </tbody>
+</table> 
+
+<!-- <a class='btn btn-success noround' href='/initialize/paystack/'>Make Payment Now</a> -->
+<a class="btn btn-success noround" href="/initialize/paystack/" style="text-align: center; display: block; margin: 0 auto;">Make Payment Now</a>
+
+
+{%endblock%}
+
+
+{% block partner%}
+{% endblock %}
+{% block featured %}
+
+
+{%endblock%}

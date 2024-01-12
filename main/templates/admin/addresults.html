@@ -1,0 +1,33 @@
+{%extends 'admin/admin_layout.html'%}
+
+{% block content %}
+{% set m = get_flashed_messages(with_categories=True) %}
+{% if m: %}
+{% for cat,msg in m %}
+{% if cat =="error" %}
+<div class="alert alert-danger">{{ msg }}</div>
+{% else %}
+<div class="alert alert-info">{{ msg }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="mb-3">
+    <form action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+    <label class="form-label" for="customFile">Upload result</label>
+    <input type="file" class="form-control" id="customFile" name="result"><br>
+
+    <label class="form-label" for="customFile">Add Comment</label><br>
+    <textarea class="form-control" name="txt"></textarea><br>
+
+  
+    <button type="submit" class="btn btn-success">Upload</button><br>
+
+    
+   
+  </div>
+  <a href="{{url_for('allstudentrec')}}" class="nav-link px-2 " style="color:#FF5714">
+    View All Student Record</a></li>
+  </form>
+{%endblock%}

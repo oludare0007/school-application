@@ -1,0 +1,60 @@
+{%extends 'users/home_layout.html'%}
+
+{% block content %}
+
+
+<!-- Add Fees Starts here -->
+<div id="addfees" class="row align-items-center">
+    <div class="col" >
+        <form id="studentupdate" class="bg-light p-5" action="" method="post" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <h1 style="color:green;">Payments</h1>
+
+
+            <div class="form-row" > <!-- Bootstrap's form-row class -->
+            <div class="col-5 col-md">
+                <label for="session">Academic Session</label>
+                <select class="form-control" id="session" name="session">
+                    <option value="">Select Session</option>
+                   
+                    <option value="2022/2023">2022/2023</option>
+                    <option value="2023/2024">2023/2024</option>
+                    <option value="2023/2024">2024/2025</option>
+                </select>
+            </div>
+            &nbsp; &nbsp;
+            <div class="col-5 col-md">
+                <label for="uniform">Uniform fees</label>
+                <input type="number" class="form-control" id="uniform" name="uniform">
+            </div>
+            </div><br><br>
+
+            <div class="form-row">
+                <div class="col-5 col-md">
+                <label for="school">School fees</label>
+                <input type="number" class="form-control" id="school" name="school">
+            </div>
+            &nbsp; &nbsp;
+            <div class="col-5 col-md">
+                <label for="book">Book fees</label>
+                <input type="number" class="form-control" id="book" name="book">
+            </div>
+            </div>
+                <br><br>
+
+            <br>
+            <button type="submit" class="btn btn-success" style="text-align: center; display: block; margin: 0 auto;">Make Payment</button>
+        </form>
+    </div>
+</div>
+
+
+{%endblock%}
+
+
+{% block partner%}
+{% endblock %}
+{% block featured %}
+
+
+{%endblock%}

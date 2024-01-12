@@ -1,0 +1,90 @@
+{%extends 'admin/admin_layout.html'%}
+
+{%block content%}
+
+<div class="container-fluid px-4">
+    <a href="{{url_for('admin_dashboard')}}" style="color: green;"> <h1 style="color: green;"> DASH BOARD</h1></a>
+
+    <ul class="member nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-start mb-md-0">
+    <li><a href="{{url_for('search_students')}}" class="nav-link px-2 " style="color:#FF5714">
+        Search Student Records</a></li>
+    </ul>
+    
+   
+    
+    
+    
+      <h1 class="mt-4" style="text-align: center; color: green;">All STUDENT'S RECORDS</h1>
+    
+            <!--Error message aread-->
+    <div class=" card mb-3">
+        {% set m = get_flashed_messages(with_categories=True) %} 
+        {% if m: %}
+        {% for cat,msg in m %}
+            {% if cat =="error" %}
+            <div class="alert alert-danger">{{ msg }}</div>
+            {% else %}
+            <div class="alert alert-info">{{ msg }}</div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+
+         <!--End Error message aread-->
+   
+   
+   
+        <div class="row">
+        <div class="col-md-3">
+            
+            <img src="/static/images/schoollogo.png" style="height: 400px;" width="270px">
+        </div>
+        <div class="col-md-9">
+            {% if students %}
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Middle Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Date Of Birth</th>
+                                <th scope="col">Parent Phone Number</th>
+                                <th scope="col">Class Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            {% for student in students %}
+            <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ student.first_name }}</td>
+                            <td>{{ student.middle_name }}</td>
+                            <td>{{ student.last_name }}</td>
+                            <td>{{ student.date_of_birth }}</td>
+                            <td>{{ student.parent_phone_no }}</td>
+                            <td>{{ student.class_name }}</td>
+                          
+                            <td><a href="{{url_for('editstudentrec',id=student.student_id)}}" class="btn btn-sm btn-success">Edit Record</a></td>
+                            <td><a href="{{url_for('studentrec_delete',id=student.student_id)}}" class="btn btn-sm btn-danger">Delete Record</a></td>
+                            <td><a href="{{url_for('addresults',id=student.student_id)}}" class="btn btn-sm btn-primary">Add result</a></td>
+                            <td><a href="{{url_for('dailyreport',id=student.student_id)}}" class="btn btn-sm btn-primary">Daily report</a></td>
+
+                            
+                                        
+
+                </tr>
+
+
+
+
+                {%endfor%}
+                {%endif%}
+        </div>
+        
+    </div>
+
+    </div>
+    
+   
+</div>
+{%endblock%}
+

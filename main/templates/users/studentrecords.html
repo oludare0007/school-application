@@ -1,0 +1,73 @@
+{%extends 'users/form_layout.html'%}
+
+{%block content%}
+<div class="container-fluid px-4">
+    <h1 class="mt-4" style="text-align: center; color: green;">STUDENT'S RECORDS</h1>
+    
+            <!--Error message aread-->
+    <div class=" card mb-3">
+        {% set m = get_flashed_messages(with_categories=True) %} 
+        {% if m: %}
+        {% for cat,msg in m %}
+            {% if cat =="error" %}
+            <div class="alert alert-danger">{{ msg }}</div>
+            {% else %}
+            <div class="alert alert-info">{{ msg }}</div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+
+         <!--End Error message aread-->
+   
+   
+   
+        <div class="row">
+        <div class="col-md-2"style="opacity: 0.2;">
+            <img src="/static/images/schoollogo.png" style="height: 400px;" width="300px">
+        </div>
+        <div class="col-md-10">
+            
+            {% if students %}
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Middle Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Date Of Birth</th>
+                                <th scope="col">Parent Phone Number</th>
+                                <th scope="col">Class Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            {% for student in students %}
+            <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ student.first_name }}</td>
+                            <td>{{ student.middle_name }}</td>
+                            <td>{{ student.last_name }}</td>
+                            <td>{{ student.date_of_birth }}</td>
+                            <td>{{ student.parent_phone_no }}</td>
+                            <td>{{ student.class_name }}</td>
+                          
+                            <td><a href="{{url_for('edit_record',id=student.student_id)}}" class="btn btn-sm btn-success">Edit Record</a></td>
+                            <td><a href="{{url_for('makepayments',id=student.student_id )}}" class="btn btn-sm btn-primary">make payment</a></td>
+                            <td><a href="{{url_for('view_results',id=student.student_id)}}" class="btn btn-sm btn-primary">View Report </a></td>
+                            <td><a href="{{url_for('viewdailyreports',id=student.student_id)}}" class="btn btn-sm btn-primary">Daily Report </a></td>
+                                        
+
+                </tr>
+
+
+
+
+                {%endfor%}
+                {%endif%}
+        </div>
+        
+    </div>
+
+    </div>
+</div>
+{%endblock%}

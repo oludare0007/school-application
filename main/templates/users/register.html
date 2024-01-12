@@ -1,0 +1,55 @@
+{%extends 'users/home_layout.html'%}
+
+
+
+
+
+{% block content %}
+<div class="row" id="form2" >
+    <div class="col-md-12" id="bground2">
+        <form class="px-4 py-3" action="{{url_for('register')}}" method="post">
+            {% set m = get_flashed_messages(with_categories=True) %} 
+            {% if m: %}
+            {% for cat,msg in m %}
+               {% if cat =="error" %}
+               <div class="alert alert-danger">{{ cat }}</div>
+               {% else %}
+               <div class="alert alert-info">{{ msg }}</div>
+               {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            <div class="form-group">
+                {{ regform.csrf_token() }}
+
+                <!-- {{ regform.fullname.label }} -->
+                {{ regform.fullname(class_="form-control mb-3 mt-5",placeholder="Fullname" )}}
+                
+            </div>
+
+            <div class="form-group">
+                <!-- {{ regform.email.label}} -->
+                {{regform.email(class_="form-control mb-3" ,placeholder="email")}}
+              
+            </div>
+            <div class="form-group">
+                <!-- {{ regform.pwd.label}} -->
+                {{regform.pwd(class_="form-control mb-3" ,placeholder="password")}}
+                
+            </div>
+            <div class="form-group">
+                <!-- {{ regform.confirmpwd.label}} -->
+                {{regform.confirmpwd(class_="form-control mb-3",placeholder="confirm password")}}
+               
+            </div>
+            {{regform.btnsubmit(class_="form-control btn btn-success")}}
+            <a href="{{url_for('login')}}"><p>Click here if you have an account</p></a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block partner%}
+{% endblock %}
+{% block featured %}
+{% endblock %}

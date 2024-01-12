@@ -1,0 +1,41 @@
+{%extends 'users/home_layout.html'%}
+
+{%block content%}
+<div class="row" id="form2" >
+    <div class="col-md-12" id="bground2">
+        <form class="px-4 py-3" action="{{url_for('login')}}" method="post">
+            {% set m = get_flashed_messages(with_categories=True) %} 
+            {% if m: %}
+            {% for cat,msg in m %}
+               {% if cat =="error" %}
+                <div class="alert alert-danger">{{ msg }}</div>
+               {% else %}
+               <div class="alert alert-info">{{ msg }}</div>
+               {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            <div class="form-group">
+                {{ logform.csrf_token() }}
+              
+                {{logform.email(class_="form-control mb-3" ,placeholder="email")}}
+              
+            </div>
+            <div class="form-group">
+           
+                {{logform.pwd(class_="form-control mb-3" ,placeholder="password")}}
+                
+            </div>
+          
+            {{logform.btnsubmit(class_="form-control btn btn-success")}}
+            <a href="{{url_for('register')}}"><p>Click here to create account</p></a>
+        </form>
+    </div>
+</div>
+
+{%endblock%}
+
+{% block partner%}
+{% endblock %}
+{% block featured %}
+{% endblock %}

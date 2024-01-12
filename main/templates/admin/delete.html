@@ -1,0 +1,19 @@
+{%extends 'admin/admin_layout.html'%}
+{% block content %}
+
+
+
+{%endblock%}
+        <div class="col-md-5", style="background-color: aquamarine;">
+
+            <h1>Delete Student Record</h1>
+            <p>Are you sure you want to delete the student record for {{ student.first_name }} {{ student.last_name }}?</p>
+            <form method="post">
+                <input type="hidden" name="confirmation" value="yes">
+                <button type="submit">Yes, Delete</button>
+            </form>
+            <a href="{{ url_for('allstudentrec') }}">Cancel</a>
+
+        </div>
+
+{%endblock%}

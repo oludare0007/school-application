@@ -1,0 +1,80 @@
+{%extends 'users/form_layout.html'%}
+
+  
+
+{%block content%}
+<a href="{{url_for('studentrecords')}}" class="nav-link px-2 " style="color:#FF5714">
+    View Student Record</a>
+
+
+
+<div class=" card mb-3">
+    {% set m = get_flashed_messages(with_categories=True) %} 
+    {% if m: %}
+    {% for cat,msg in m %}
+        {% if cat =="error" %}
+        <div class="alert alert-danger">{{ msg }}</div>
+        {% else %}
+        <div class="alert alert-info">{{ msg }}</div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+   
+</div>
+
+
+<div class="mb-3">
+    <div class="col">
+       
+        <h3 class="form-label" for="customFile" style="color: green; text-align: center;">Daily Report</h3><br><br>
+    
+    </div>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+    <div class="row">
+        <div class="col-md-3">
+            <h4 class="form-label" for="customFile" style="color: green; text-align: center;">Date</h4><br><br>
+            <textarea class="form-control" name="readonly_textarea" readonly>{{report.sent_date}}</textarea><br>
+        </div>
+    <div class="col-md-9">
+        <h4 class="form-label" for="customFile" style="color: green; text-align: center;">Today's Report</h4><br><br>
+        <textarea class="form-control" name="readonly_textarea" readonly>{{report.daily_report}}</textarea><br>
+    </div>
+    </div>
+        </form>
+
+       
+    
+
+
+</div>
+
+
+{%endblock%}
+
+
+{% block partner %}
+<div class="row">
+    <div class="col-12">
+        <!-- <h4 style="color: green;">All Reports:</h4> -->
+        {% if all_reports %}
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Date Sent</th>
+                                <th scope="col">Daily Reports</th>
+                                </tr>
+                            </thead>
+        {% for rpt in all_reports %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ rpt.sent_date }} </td>
+            <td>{{ rpt.daily_report }}</td>
+        </tr>
+        {% endfor %}
+        {%endif%}
+
+    </div>
+</div>
+{% endblock %}

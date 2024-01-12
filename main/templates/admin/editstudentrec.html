@@ -1,0 +1,90 @@
+
+{%extends 'admin/admin_layout.html'%}
+
+
+
+
+{% block content %}
+<div class="row" id="form2" >
+    <div class="col-md-12" >
+        <h1 class="mt-4" style="text-align: center;color: green;">EDIT STUDENT RECORDS</h1>
+        <form class="px-4 py-3" action=" " method="post">
+            
+          
+               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+                {% set m = get_flashed_messages(with_categories=True) %}
+                {% if m: %}
+                {% for cat,msg in m %}
+                {% if cat =="error" %}
+                <div class="alert alert-danger">{{ msg }}</div>
+                {% else %}
+                <div class="alert alert-info">{{ msg }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+       
+      
+            <div class="form-group">
+              {{ editform.csrf_token() }}
+              
+              {{editform.firstname.label}}
+              {{editform.firstname(class_='form-control',value=student.first_name)}}
+       
+               
+            </div>
+
+            <div class="form-group">
+              {{editform.middlename.label}}
+              {{editform.middlename(class_='form-control',value=student.middle_name)}}
+              
+                    
+            </div>
+
+            <div class="form-group">
+              {{editform.lastname.label}}
+              {{editform.lastname(class_='form-control',value=student.last_name)}}
+             
+                     
+            </div>
+
+
+            <div class="form-group">
+              {{editform.classname.label}}
+              {{editform.classname(class_='form-control',value=student.class_name)}}
+             
+                 
+             </div>
+                
+
+                <div class="form-group">
+                  {{editform.dateofbirth.label}}
+                  {{editform.dateofbirth(class_='form-control',value=student.date_of_birth)}}
+                 
+                         
+                 </div> 
+
+
+                    <div class="form-group">
+                      {{editform.parentphoneno.label}}
+                      {{editform.parentphoneno(class_='form-control',value=student.parent_phone_no)}}
+                  
+                    </div> 
+                    
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                    
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block partner%}
+{% endblock %}
+{% block featured %}
+{% endblock %}
